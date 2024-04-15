@@ -1,8 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  env: {
-    API_URL: "https://code.ihasy.com/proxy/8000",
-  },
-};
+const nextConfig = {};
 
 module.exports = nextConfig;
