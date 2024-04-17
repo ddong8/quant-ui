@@ -41,7 +41,6 @@ function MyComponent() {
       const jsonData = await resp.json();
       setValues(jsonData.data.task_config);
       setTaskId(jsonData.data.task_id);
-      setData(jsonData); // 设置数据状态
     } catch (error) {
       console.error(error); // 打印失败信息
     } finally {
@@ -84,7 +83,6 @@ function MyComponent() {
       });
       const jsonData = await resp.json();
       setValues(jsonData.data.task_config);
-      setData(jsonData); // 设置数据状态
     } catch (error) {
       console.error(error); // 打印失败信息
     } finally {
