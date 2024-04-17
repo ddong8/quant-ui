@@ -1,10 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Input, Code } from "@nextui-org/react";
-import { AddUser } from "./add-user";
+import { Button, Input, Textarea } from "@nextui-org/react";
 
 function MyComponent() {
-  const [data, setData] = useState(null);
   const [taskId, setTaskId] = useState("");
   const [isDisabled1, setIsDisabled1] = useState(false);
   const [isDisabled2, setIsDisabled2] = useState(false);
@@ -97,32 +95,34 @@ function MyComponent() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <Input
+        <Textarea
           isDisabled
-          labelPlacement="outside-left"
-          label="交易任务ID"
+          isReadOnly
           variant="bordered"
-          defaultValue=""
+          label="交易任务ID"
+          labelPlacement="outside"
+          placeholder=""
           value={taskId}
+          className="col-span-12 md:col-span-6 mb-6 md:mb-0"
         />
       </div>
-      <div className="flex flex-col gap-4">
-        <div className="flex w-full flex-wrap md:flex-nowrap gap-2">
-          <Button
-            isDisabled={isDisabled1}
-            onClick={handleTradeCreateClick}
-            color="primary"
-          >
-            启动交易
-          </Button>
-          <Button
-            isDisabled={isDisabled1}
-            onClick={handleTradeStopClick}
-            color="danger"
-          >
-            停止交易
-          </Button>
-        </div>
+      <div className="flex flex-col gap-2">
+        <Button
+          isDisabled={isDisabled1}
+          onClick={handleTradeCreateClick}
+          color="primary"
+        >
+          启动交易
+        </Button>
+      </div>
+      <div className="flex flex-col gap-2">
+        <Button
+          isDisabled={isDisabled1}
+          onClick={handleTradeStopClick}
+          color="danger"
+        >
+          停止交易
+        </Button>
       </div>
       <Input
         label="品种"
@@ -180,12 +180,6 @@ function MyComponent() {
       >
         更新任务参数
       </Button>
-      {/* {data && <pre>{JSON.stringify(data, null, 2)}</pre>}{" "} */}
-      {/* <div className="flex w-full">
-        <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-          <AddUser />
-        </div>
-      </div> */}
     </div>
   );
 }
