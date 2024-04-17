@@ -10,11 +10,19 @@ import {
 } from "@nextui-org/react";
 import React, { useState } from "react";
 
-export const UpdateTask = ({ taskId, values, setValues }) => {
+interface MyProps {
+  taskId: string;
+  values: any;
+  setValues: any;
+}
+
+export const UpdateTask: React.FC<MyProps> = ({
+  taskId,
+  values,
+  setValues,
+}) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
   const [isDisabled2, setIsDisabled2] = useState(false);
 
   const handleChange = (event: any) => {
