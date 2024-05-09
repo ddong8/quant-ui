@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Button, Textarea } from "@nextui-org/react";
-import { UpdateTask } from "./update-task";
+import { Task } from "@/components/task";
 
 function MyComponent() {
   const [taskId, setTaskId] = useState("");
@@ -92,7 +92,7 @@ function MyComponent() {
           停止交易
         </Button>
       </div>
-      <UpdateTask taskId={taskId} values={values} setValues={setValues} />
+      <Task taskId={taskId} values={values} setValues={setValues} />
     </div>
   );
 }

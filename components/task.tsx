@@ -16,11 +16,7 @@ interface MyProps {
   setValues: any;
 }
 
-export const UpdateTask: React.FC<MyProps> = ({
-  taskId,
-  values,
-  setValues,
-}) => {
+export const Task: React.FC<MyProps> = ({ taskId, values, setValues }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const [isDisabled2, setIsDisabled2] = useState(false);
@@ -74,11 +70,6 @@ export const UpdateTask: React.FC<MyProps> = ({
                   任务参数
                 </ModalHeader>
                 <ModalBody>
-                  {/* <Input label="起始价格" variant="bordered" />
-                  <Input label="增仓价差" variant="bordered" />
-                  <Input label="增仓量差" variant="bordered" />
-                  <Input label="目标盈利" variant="bordered" /> */}
-
                   <Input
                     label="品种"
                     name="code"
