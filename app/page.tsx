@@ -1,51 +1,97 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code"
-import { button as buttonStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+"use client";
+import React, { useState } from "react";
+import { Button, Textarea } from "@nextui-org/react";
+import { Task } from "@/components/task";
 
 export default function Home() {
-	return (
-		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-			<div className="inline-block max-w-lg text-center justify-center">
-				<h1 className={title()}>Make&nbsp;</h1>
-				<h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-				<br />
-				<h1 className={title()}>
-					websites regardless of your design experience.
-				</h1>
-				<h2 className={subtitle({ class: "mt-4" })}>
-					Beautiful, fast and modern React UI library.
-				</h2>
-			</div>
+  const [taskId, setTaskId] = useState("");
+  const [isDisabled1, setIsDisabled1] = useState(false);
 
-			<div className="flex gap-3">
-				<Link
-					isExternal
-					href={siteConfig.links.docs}
-					className={buttonStyles({ color: "primary", radius: "full", variant: "shadow" })}
-				>
-					Documentation
-				</Link>
-				<Link
-					isExternal
-					className={buttonStyles({ variant: "bordered", radius: "full" })}
-					href={siteConfig.links.github}
-				>
-					<GithubIcon size={20} />
-					GitHub
-				</Link>
-			</div>
+  const [values, setValues] = useState({
+    code: "",
+    direction: "SELL",
+    target_price: "1570",
+    price_diff_step: "5",
+    volume_diff_step: "1",
+    target_profit: "110",
+    max_position_ratio: "0.4",
+  });
 
-			<div className="mt-8">
-				<Snippet hideSymbol hideCopyButton variant="flat">
-					<span>
-						Get started by editing <Code color="primary">app/page.tsx</Code>
-					</span>
-				</Snippet>
-			</div>
-		</section>
-	);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+  // 处理启动按钮点击事件
+  const handleTradeCreateClick = async () => {
+    setIsDisabled1(true); // 设置按钮状态为disable
+    try {
+      // 使用fetch发送请求
+      const resp = await fetch(`${API_URL}/api/v1/future/create_task`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const jsonData = await resp.json();
+      setValues(jsonData.data.task_config);
+      setTaskId(jsonData.data.task_id);
+    } catch (error) {
+      console.error(error); // 打印失败信息
+    } finally {
+      setIsDisabled1(false); // 请求结束，恢复按钮状态为enable
+    }
+  };
+
+  // 处理启动按钮点击事件
+  const handleTradeStopClick = async () => {
+    setIsDisabled1(true); // 设置按钮状态为disable
+    try {
+      // 使用fetch发送请求
+      const resp = await fetch(`${API_URL}/api/v1/future/cancel_task`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ task_id: taskId }, null, 2),
+      });
+      const jsonData = await resp.json();
+    } catch (error) {
+      console.error(error); // 打印失败信息
+    } finally {
+      setIsDisabled1(false); // 请求结束，恢复按钮状态为enable
+    }
+  };
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
+        <Textarea
+          isDisabled
+          isReadOnly
+          variant="bordered"
+          label="交易任务ID"
+          labelPlacement="outside"
+          placeholder=""
+          value={taskId}
+          className="col-span-12 md:col-span-6 mb-6 md:mb-0"
+        />
+      </div>
+      <div className="flex flex-col gap-2">
+        <Button
+          isDisabled={isDisabled1}
+          onClick={handleTradeCreateClick}
+          color="primary"
+        >
+          启动交易
+        </Button>
+      </div>
+      <div className="flex flex-col gap-2">
+        <Button
+          isDisabled={isDisabled1}
+          onClick={handleTradeStopClick}
+          color="danger"
+        >
+          停止交易
+        </Button>
+      </div>
+      <Task taskId={taskId} values={values} setValues={setValues} />
+    </div>
+  );
 }
