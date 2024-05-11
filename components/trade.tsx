@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button, Textarea } from "@nextui-org/react";
 import { Task } from "@/components/task";
 
-export default function Home() {
+export default function Trade() {
   const [taskId, setTaskId] = useState("");
   const [isDisabled1, setIsDisabled1] = useState(false);
 
