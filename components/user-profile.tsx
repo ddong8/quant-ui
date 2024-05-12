@@ -8,7 +8,7 @@ export default async function UserProfile() {
   if (!session?.user) return <SignIn />;
   return (
     <div className="flex gap-2 items-center">
-      <UserButton />
+      <UserButton session={session} />
       {/* <Button variant="ghost" className="relative w-8 h-8 rounded-full">
         {session.user.name ?? ""}
       </Button> */}
