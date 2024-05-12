@@ -1,34 +1,29 @@
-import { signIn, signOut } from "../app/api/auth"
-import { Button } from "@nextui-org/react"
+import { signIn, signOut } from "../app/api/auth";
+import { Button } from "@nextui-org/react";
 
-export function SignIn({
-  provider,
-  ...props
-}: { provider?: string } & React.ComponentPropsWithRef<typeof Button>) {
+export function SignIn({ provider }: { provider?: string }) {
   return (
     <form
       action={async () => {
-        "use server"
-        await signIn(provider)
+        "use server";
+        await signIn(provider);
       }}
     >
       <Button type="submit">Sign In</Button>
     </form>
-  )
+  );
 }
 
-export function SignOut(props: React.ComponentPropsWithRef<typeof Button>) {
+export function SignOut() {
   return (
     <form
       action={async () => {
-        "use server"
-        await signOut()
+        "use server";
+        await signOut();
       }}
       className="w-full"
     >
-      <Button variant="ghost" className="w-full p-0" {...props}>
-        Sign Out
-      </Button>
+      <Button type="submit">Sign Out</Button>
     </form>
-  )
+  );
 }
