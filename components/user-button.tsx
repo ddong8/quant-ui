@@ -22,7 +22,7 @@ export default function UserButton({ session }: { session?: any }) {
             {session?.user?.name ?? ""}
             <Avatar
               showFallback
-              name="ddong8"
+              name=""
               src={
                 session?.user?.image ??
                 "https://source.boringavatars.com/marble/120"
