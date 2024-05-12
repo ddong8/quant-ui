@@ -5,6 +5,7 @@ import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
+  DropdownSection,
   DropdownItem,
   Button,
 } from "@nextui-org/react";
@@ -19,11 +20,15 @@ export default function UserButton({ session }: { session?: any }) {
           <Button variant="bordered">{session?.user?.name}</Button>
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">
-          <DropdownItem key="name">{session?.user?.name}</DropdownItem>
-          <DropdownItem key="email">{session?.user?.email}</DropdownItem>
-          <DropdownItem key="sign-out" className="text-danger" color="danger">
-            <SignOut />
-          </DropdownItem>
+          <DropdownSection title="Profile" showDivider>
+            <DropdownItem key="name">{session?.user?.name}</DropdownItem>
+            <DropdownItem key="email">{session?.user?.email}</DropdownItem>
+          </DropdownSection>
+          <DropdownSection title="SignOut">
+            <DropdownItem key="sign-out" className="text-danger" color="danger">
+              <SignOut />
+            </DropdownItem>
+          </DropdownSection>
         </DropdownMenu>
       </Dropdown>
     </div>
