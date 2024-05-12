@@ -12,7 +12,7 @@ import {
 import { useSession } from "next-auth/react";
 
 export default function UserButton() {
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
   return (
     <div className="flex gap-2 items-center">
       <Dropdown>
