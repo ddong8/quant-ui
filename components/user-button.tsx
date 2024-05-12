@@ -8,6 +8,7 @@ import {
   DropdownItem,
   Button,
 } from "@nextui-org/react";
+import { SignOut } from "./auth-components";
 
 export default function UserButton({ session }: { session?: any }) {
   if (!session?.user) return null;
@@ -21,7 +22,7 @@ export default function UserButton({ session }: { session?: any }) {
           <DropdownItem key="name">{session?.user?.name}</DropdownItem>
           <DropdownItem key="email">{session?.user?.email}</DropdownItem>
           <DropdownItem key="sign-out" className="text-danger" color="danger">
-            Delete file
+            <SignOut />
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>

@@ -1,29 +1,16 @@
-import { signIn, signOut } from "../app/api/auth";
+"use client";
+
+import { signIn, signOut } from "next-auth/react";
 import { Button } from "@nextui-org/react";
 
-export function SignIn({ provider }: { provider?: string }) {
+export function SignIn() {
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signIn(provider);
-      }}
-    >
-      <Button type="submit">Sign In</Button>
-    </form>
+    <Button onClick={() => signIn("github", { redirectTo: "/" })}>
+      Sign In
+    </Button>
   );
 }
 
 export function SignOut() {
-  return (
-    <form
-      action={async () => {
-        "use server";
-        await signOut();
-      }}
-      className="w-full"
-    >
-      <Button type="submit">Sign Out</Button>
-    </form>
-  );
+  return <button onClick={() => signOut()}>Sign Out</button>;
 }
