@@ -9,6 +9,7 @@ import {
   DropdownItem,
   Button,
 } from "@nextui-org/react";
+import { Avatar } from "@nextui-org/react";
 import { SignOut } from "./auth-components";
 
 export default function UserButton({ session }: { session?: any }) {
@@ -17,7 +18,16 @@ export default function UserButton({ session }: { session?: any }) {
     <div className="flex gap-2 items-center">
       <Dropdown>
         <DropdownTrigger>
-          <Button variant="bordered">{session?.user?.name}</Button>
+          <Button variant="light">
+            {session?.user?.name}
+            <Avatar
+              src={
+                session?.user?.image ??
+                "https://source.boringavatars.com/marble/120"
+              }
+              alt={session?.user?.name ?? ""}
+            ></Avatar>
+          </Button>
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">
           <DropdownSection title="Profile" showDivider>
