@@ -1,16 +1,32 @@
-import { Button } from "@nextui-org/react";
-import { auth } from "../app/api/auth";
-import { SignIn, SignOut } from "./auth-components";
+"use client";
 
-export default async function UserButton() {
-  const session = await auth();
-  if (!session?.user) return <SignIn />;
+import React from "react";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+} from "@nextui-org/react";
+
+import { useSession } from "next-auth/react";
+
+export default function UserButton() {
+  const { data: session } = useSession();
   return (
     <div className="flex gap-2 items-center">
-      <Button variant="ghost" className="relative w-8 h-8 rounded-full">
-        {session.user.name ?? ""}
-      </Button>
-      <SignOut />
+      <Dropdown>
+        <DropdownTrigger>
+          <Button variant="bordered">{session?.user?.name}</Button>
+        </DropdownTrigger>
+        <DropdownMenu aria-label="Static Actions">
+          <DropdownItem key="name">{session?.user?.name}</DropdownItem>
+          <DropdownItem key="email">{session?.user?.email}</DropdownItem>
+          <DropdownItem key="sign-out" className="text-danger" color="danger">
+            Delete file
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
     </div>
   );
 }

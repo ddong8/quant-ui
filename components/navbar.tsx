@@ -29,7 +29,7 @@ import {
 
 import { Logo } from "@/components/icons";
 
-import UserButton from "./user-button";
+import UserProfile from "./user-profile";
 
 export const Navbar = () => {
 	const searchInput = (
@@ -82,7 +82,7 @@ export const Navbar = () => {
 				</NavbarItem>
 				<NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
 				<NavbarItem className="hidden md:flex">
-					<UserButton />
+					<UserProfile />
 				</NavbarItem>
 			</NavbarContent>
 
