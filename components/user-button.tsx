@@ -21,12 +21,14 @@ export default function UserButton({ session }: { session?: any }) {
           <Button variant="light">
             {session?.user?.name}
             <Avatar
+              showFallback
+              name="ddong8"
               src={
                 session?.user?.image ??
                 "https://source.boringavatars.com/marble/120"
               }
               alt={session?.user?.name ?? ""}
-            ></Avatar>
+            />
           </Button>
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">
@@ -39,12 +41,7 @@ export default function UserButton({ session }: { session?: any }) {
             </DropdownItem>
           </DropdownSection>
           <DropdownSection title="SignOut" aria-label="">
-            <DropdownItem
-              key="SignOut"
-              className="text-danger"
-              color="danger"
-              description="SignOut"
-            >
+            <DropdownItem key="SignOut" className="text-danger" color="danger">
               <SignOut />
             </DropdownItem>
           </DropdownSection>
