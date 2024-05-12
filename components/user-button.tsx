@@ -19,7 +19,7 @@ export default function UserButton({ session }: { session?: any }) {
       <Dropdown>
         <DropdownTrigger>
           <Button variant="light">
-            {session?.user?.name}
+            {session?.user?.name ?? ""}
             <Avatar
               showFallback
               name="ddong8"
@@ -34,10 +34,10 @@ export default function UserButton({ session }: { session?: any }) {
         <DropdownMenu aria-label="Static Actions">
           <DropdownSection title="Profile" showDivider>
             <DropdownItem key="name" description="name">
-              {session?.user?.name}
+              {session?.user?.name ?? ""}
             </DropdownItem>
             <DropdownItem key="email" description="email">
-              {session?.user?.email}
+              {session?.user?.email ?? ""}
             </DropdownItem>
           </DropdownSection>
           <DropdownSection title="SignOut" aria-label="">
