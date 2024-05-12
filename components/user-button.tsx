@@ -31,11 +31,20 @@ export default function UserButton({ session }: { session?: any }) {
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">
           <DropdownSection title="Profile" showDivider>
-            <DropdownItem key="name">{session?.user?.name}</DropdownItem>
-            <DropdownItem key="email">{session?.user?.email}</DropdownItem>
+            <DropdownItem key="name" description="name">
+              {session?.user?.name}
+            </DropdownItem>
+            <DropdownItem key="email" description="email">
+              {session?.user?.email}
+            </DropdownItem>
           </DropdownSection>
-          <DropdownSection title="SignOut">
-            <DropdownItem key="sign-out" className="text-danger" color="danger">
+          <DropdownSection title="SignOut" aria-label="">
+            <DropdownItem
+              key="SignOut"
+              className="text-danger"
+              color="danger"
+              description="SignOut"
+            >
               <SignOut />
             </DropdownItem>
           </DropdownSection>
