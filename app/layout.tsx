@@ -7,6 +7,9 @@ import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 
+import { auth } from "../app/api/auth";
+import { SessionProvider } from "next-auth/react";
+
 export const metadata: Metadata = {
 	title: {
 		default: siteConfig.name,
@@ -24,11 +27,12 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const session = await auth();
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
@@ -40,6 +44,7 @@ export default function RootLayout({
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="relative flex flex-col h-screen">
+						<SessionProvider session={session}>
 						<Navbar />
 						<main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
 						<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -59,6 +64,7 @@ export default function RootLayout({
 								<p className="text-primary">NextUI</p>
 							</Link>
 						</footer>
+						</SessionProvider>
 					</div>
 				</Providers>
 			</body>
