@@ -9,9 +9,9 @@ import { socket } from "../app/socket";
 export default function Trade() {
   const [taskId, setTaskId] = useState("");
   const { data: session } = useSession();
-  const [transport, setTransport] = useState("N/A");
-  const [isConnected, setIsConnected] = useState(false);
-  const [TradingStatus, setTradingStatus] = useState("");
+  const [message, setMessage] = useState("");
+  const [receivedMessage, setReceivedMessage] = useState("");
+
   const [isDisabled1, setIsDisabled1] = useState(false);
 
   const [values, setValues] = useState({
@@ -31,33 +31,37 @@ export default function Trade() {
       onConnect();
     }
 
-    function onConnect() {
-      setIsConnected(true);
-      setTransport(socket.io.engine.transport.name);
-
-      socket.io.engine.on("upgrade", (transport) => {
-        setTransport(transport.name);
-      });
-    }
-
-    function onMessage(data: any) {
-      setTradingStatus(data);
-    }
-
-    function onDisconnect() {
-      setIsConnected(false);
-      setTransport("N/A");
-    }
-
     socket.on("connect", onConnect);
-    socket.on("message", onMessage);
     socket.on("disconnect", onDisconnect);
 
+    // 连接时进入房间
+    function onConnect() {
+      socket.emit("join_room", session?.user?.name);
+    }
+
+    // 监听来自服务器的消息
+    socket.on("message", (message) => {
+      setReceivedMessage(message);
+    });
+
+    function onDisconnect() {
+      socket.emit("leave_room", session?.user?.name);
+    }
+
+    // 清理函数：在组件卸载时断开连接
     return () => {
       socket.off("connect", onConnect);
       socket.off("disconnect", onDisconnect);
     };
   }, []);
+
+  // 处理发送消息事件
+  const sendMessage = () => {
+    if (socket && message) {
+      socket.emit("sendMessage", { room: session?.user?.name, message });
+      setMessage("");
+    }
+  };
 
   // 处理启动按钮点击事件
   const handleTradeCreateClick = async () => {
@@ -69,7 +73,7 @@ export default function Trade() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ UserName: session?.user }, null, 2),
+        body: JSON.stringify({ User: session?.user }, null, 2),
       });
       const jsonData = await resp.json();
       setValues(jsonData.data.task_config);
@@ -114,7 +118,7 @@ export default function Trade() {
           className="col-span-12 md:col-span-6 mb-6 md:mb-0"
         />
       </div>
-      <span>{TradingStatus}</span>
+      <span>{receivedMessage}</span>
       <div className="flex flex-col gap-2">
         <Button
           isDisabled={isDisabled1}
