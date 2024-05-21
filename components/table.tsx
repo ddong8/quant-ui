@@ -21,8 +21,8 @@ import { UpdateTask } from "./table/Update";
 import { Task } from "../types";
 
 const columns = [
-  { key: "role", label: "名称" },
-  { key: "status", label: "创建时间" },
+  { key: "name", label: "品种" },
+  { key: "price", label: "价格" },
   { key: "actions", label: "操作" },
 ];
 
@@ -141,7 +141,7 @@ export default function CustomTable() {
       const cellValue = getKeyValue(task, columnKey);
 
       switch (columnKey) {
-        case "role":
+        case "name":
           return (
             <div className="flex flex-col">
               <p className="text-bold text-sm capitalize">
@@ -149,10 +149,12 @@ export default function CustomTable() {
               </p>
             </div>
           );
-        case "status":
+        case "price":
           return (
             <div className="flex flex-col">
-              <p className="text-bold text-sm capitalize">{task.task_id}</p>
+              <p className="text-bold text-sm capitalize">
+                {task.task_config.target_price}
+              </p>
             </div>
           );
         case "actions":
