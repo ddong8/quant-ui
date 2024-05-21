@@ -8,7 +8,7 @@ export default async function Home() {
   const session = await auth();
   if (!session?.user)
     return (
-      <div>
+      <div className="text-center">
         <span>请登录先!</span>
       </div>
     );
