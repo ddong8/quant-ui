@@ -21,7 +21,7 @@ import {
 
 import { Logo } from "@/components/icons";
 
-import UserProfile from "./user-profile";
+import UserProfile from "./navbar/user-profile";
 
 export const Navbar = () => {
   const searchInput = (

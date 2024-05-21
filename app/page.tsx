@@ -1,15 +1,21 @@
 import { auth } from "../app/api/auth";
 import { SessionProvider } from "next-auth/react";
-import { SignIn, SignOut } from "../components/auth-components";
-import Trade from "@/components/trade";
+import dynamic from "next/dynamic";
+
+const CustomTable = dynamic(() => import("@/components/table"), { ssr: false });
 
 export default async function Home() {
   const session = await auth();
-  if (!session?.user) return <SignIn />;
+  if (!session?.user)
+    return (
+      <div>
+        <span>请登录先!</span>
+      </div>
+    );
   return (
     <div className="flex flex-col gap-4">
       <SessionProvider session={session}>
-        <Trade />
+        <CustomTable />
       </SessionProvider>
     </div>
   );

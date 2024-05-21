@@ -9,17 +9,29 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import React, { useState } from "react";
+import { useSession } from "next-auth/react";
+import { EditIcon } from "./icon/EditIcon";
+import { TaskConfig } from "@/types";
 
 interface MyProps {
   taskId: string;
-  values: any;
-  setValues: any;
+  taskConfig: TaskConfig;
 }
 
-export const Task: React.FC<MyProps> = ({ taskId, values, setValues }) => {
+export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
+  const { data: session } = useSession();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const [isDisabled2, setIsDisabled2] = useState(false);
+  const [values, setValues] = useState({
+    code: taskConfig.code,
+    direction: taskConfig.direction,
+    target_price: taskConfig.target_price,
+    price_diff_step: taskConfig.price_diff_step,
+    volume_diff_step: taskConfig.volume_diff_step,
+    target_profit: taskConfig.target_profit,
+    max_position_ratio: taskConfig.max_position_ratio,
+  });
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;
@@ -30,16 +42,20 @@ export const Task: React.FC<MyProps> = ({ taskId, values, setValues }) => {
   };
 
   // 处理启动按钮点击事件
-  const handleUpdateTargetProfitClick = async () => {
+  const handleUpdateButtonClick = async () => {
     setIsDisabled2(true); // 设置按钮状态为disable
     try {
       // 使用fetch发送请求
-      const resp = await fetch(`${API_URL}/api/v1/future/update_task_config`, {
+      const resp = await fetch(`${API_URL}/api/v1/future/update_task`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ task_id: taskId, task_config: values }, null, 2),
+        body: JSON.stringify(
+          { User: session?.user, task_id: taskId, task_config: values },
+          null,
+          2
+        ),
       });
       const jsonData = await resp.json();
       setValues(jsonData.data.task_config);
@@ -54,9 +70,9 @@ export const Task: React.FC<MyProps> = ({ taskId, values, setValues }) => {
     <div>
       <>
         <div className="flex flex-col gap-2">
-          <Button onPress={onOpen} color="primary">
-            更新任务参数
-          </Button>
+          <EditIcon onClick={onOpen}>
+            <span>更新任务参数</span>
+          </EditIcon>
         </div>
         <Modal
           isOpen={isOpen}
@@ -127,7 +143,7 @@ export const Task: React.FC<MyProps> = ({ taskId, values, setValues }) => {
                   <Button
                     isDisabled={isDisabled2}
                     onPress={onClose}
-                    onClick={handleUpdateTargetProfitClick}
+                    onClick={handleUpdateButtonClick}
                     color="primary"
                   >
                     更新
