@@ -70,8 +70,10 @@ export const DetailTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
         <span>任务详情</span>
       </EyeIcon>
       <Modal
-        isOpen={isOpen}
+        size="xs"
+        backdrop="blur"
         placement="center"
+        isOpen={isOpen}
         onOpenChange={onOpenChange}
         isDismissable={false}
         isKeyboardDismissDisabled={true}

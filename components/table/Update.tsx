@@ -75,9 +75,11 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
           </EditIcon>
         </div>
         <Modal
+          size="xs"
+          backdrop="blur"
+          placement="center"
           isOpen={isOpen}
           onOpenChange={onOpenChange}
-          placement="top-center"
         >
           <ModalContent>
             {(onClose) => (
