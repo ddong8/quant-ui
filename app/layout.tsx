@@ -4,7 +4,6 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
-import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 
 import { auth } from "../app/api/auth";
@@ -48,7 +47,7 @@ export default async function RootLayout({
               <Navbar />
               <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
                 <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-                  <div className="inline-block max-w-lg text-center justify-center">
+                  <div className="inline-block max-w-4xl text-center justify-center w-full">
                     {children}
                   </div>
                 </section>

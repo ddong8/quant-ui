@@ -52,8 +52,7 @@ export default function CustomTable() {
   const handleCreateButtonClick = useCallback(() => {
     setIsDisabled1(true);
     createTask()
-      .then((createdTask) => {
-        console.log("Task created:", createdTask);
+      .then(() => {
         setIsDisabled1(false);
       })
       .catch((error) => {
@@ -91,8 +90,7 @@ export default function CustomTable() {
     (task_id: string) => {
       setIsDisabled1(true);
       stopTask(task_id)
-        .then((stopTask) => {
-          console.log("Task stopped:", stopTask);
+        .then(() => {
           setIsDisabled1(false);
         })
         .catch((error) => {
