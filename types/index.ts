@@ -16,6 +16,7 @@ export type TaskConfig = {
   target_price: string
   price_diff_step: string
   volume_diff_step: string
+  profit_diff_price: string
   target_profit: string
   max_position_ratio: string
 };

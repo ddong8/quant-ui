@@ -29,6 +29,7 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
     target_price: taskConfig.target_price,
     price_diff_step: taskConfig.price_diff_step,
     volume_diff_step: taskConfig.volume_diff_step,
+    profit_diff_price: taskConfig.profit_diff_price,
     target_profit: taskConfig.target_profit,
     max_position_ratio: taskConfig.max_position_ratio,
   });
@@ -121,6 +122,13 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
                     name="volume_diff_step"
                     variant="bordered"
                     value={values.volume_diff_step}
+                    onChange={handleChange}
+                  />
+                  <Input
+                    label="盈利价差"
+                    name="profit_diff_price"
+                    variant="bordered"
+                    value={values.profit_diff_price}
                     onChange={handleChange}
                   />
                   <Input
