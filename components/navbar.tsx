@@ -11,7 +11,7 @@ import { Input } from "@nextui-org/input";
 import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
 
-import { ThemeSwitch } from "@/components/theme-switch";
+import { ThemeSwitch } from "@/components/theme";
 import {
   TwitterIcon,
   GithubIcon,

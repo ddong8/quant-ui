@@ -15,10 +15,6 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
@@ -60,7 +56,7 @@ export default async function RootLayout({
               <footer className="w-full flex items-center justify-center py-3">
                 <p>
                   Copyright &copy; 2023-{new Date().getFullYear()} ihasy.com All
-                  rights reserved.
+                  Rights Reserved.
                 </p>
               </footer>
             </SessionProvider>

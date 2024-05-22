@@ -1,6 +1,6 @@
 "use client";
 
-import { SignIn } from "../auth-components";
+import { SignIn } from "../auth";
 import UserButton from "./user-button";
 import { useSession } from "next-auth/react";
 
