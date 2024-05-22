@@ -15,12 +15,6 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  viewport: {
-    width: "device-width",
-    initialScale: 1.0,
-    maximumScale: 1.0,
-    userScalable: false,
-  },
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
@@ -40,7 +34,12 @@ export default async function RootLayout({
   const session = await auth();
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+      </head>
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
