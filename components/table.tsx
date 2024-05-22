@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import {
-  Button,
   Tooltip,
   Table,
   TableHeader,
@@ -15,57 +14,24 @@ import {
 import { useSession } from "next-auth/react";
 import { DeleteIcon } from "./table/icon/DeleteIcon";
 import { socket } from "../app/socket";
-import { PlusIcon } from "./table/icon/PlusIcon";
 import { DetailTask } from "./table/Detail";
 import { UpdateTask } from "./table/Update";
+import { AddTask } from "./table/Add";
 import { Task } from "../types";
 
 const columns = [
-  { key: "name", label: "品种" },
-  { key: "price", label: "价格" },
-  { key: "actions", label: "操作" },
+  { key: "name", label: "开仓品种" },
+  { key: "price", label: "开仓价格" },
+  { key: "actions", label: "任务操作" },
 ];
 
 export default function CustomTable() {
   const { data: session } = useSession();
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [isDisabled1, setIsDisabled1] = useState(false);
   const [selectedKeys, setSelectedKeys] = useState(new Set(["2"]));
-
-  const createTask = useCallback(async () => {
-    try {
-      const resp = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/future/create_task`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ User: session?.user }, null, 2),
-        }
-      );
-      const jsonData = await resp.json();
-      // 处理 jsonData 如果需要
-    } catch (error) {
-      console.error(error);
-    }
-  }, [session]);
-
-  const handleCreateButtonClick = useCallback(() => {
-    setIsDisabled1(true);
-    createTask()
-      .then(() => {
-        setIsDisabled1(false);
-      })
-      .catch((error) => {
-        console.error("Error creating task:", error);
-      })
-      .finally(() => {
-        setIsDisabled1(false);
-      });
-  }, [createTask]);
 
   const stopTask = useCallback(
     async (task_id: string) => {
-      setIsDisabled1(true);
       try {
         const resp = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/api/v1/future/cancel_task`,
@@ -80,7 +46,6 @@ export default function CustomTable() {
       } catch (error) {
         console.error(error);
       } finally {
-        setIsDisabled1(false);
       }
     },
     [session]
@@ -88,17 +53,9 @@ export default function CustomTable() {
 
   const handleStopButtonClick = useCallback(
     (task_id: string) => {
-      setIsDisabled1(true);
-      stopTask(task_id)
-        .then(() => {
-          setIsDisabled1(false);
-        })
-        .catch((error) => {
-          console.error("Error stopping task:", error);
-        })
-        .finally(() => {
-          setIsDisabled1(false);
-        });
+      stopTask(task_id).catch((error) => {
+        console.error("Error stopping task:", error);
+      });
     },
     [stopTask]
   );
@@ -196,18 +153,11 @@ export default function CustomTable() {
     return (
       <div className="flex flex-col gap-4">
         <div className="flex justify-between gap-3 items-end">
-          <Button
-            isDisabled={isDisabled1}
-            color="primary"
-            endContent={<PlusIcon />}
-            onClick={handleCreateButtonClick}
-          >
-            新建任务
-          </Button>
+          <AddTask></AddTask>
         </div>
       </div>
     );
-  }, [isDisabled1, handleCreateButtonClick]);
+  }, []);
 
   const handleSelectionChange = (keys: any) => {
     setSelectedKeys(new Set(keys));
