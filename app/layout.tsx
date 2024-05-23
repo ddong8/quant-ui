@@ -35,6 +35,9 @@ export default async function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icons/icon-64x64.png" />
+        <meta name="theme-color" content="#000000" />
       </head>
       <body
         className={clsx(

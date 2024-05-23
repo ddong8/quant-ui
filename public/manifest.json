@@ -1,0 +1,16 @@
+{
+    "name": "Quantitative Trading Website",
+    "short_name": "QuantTrade",
+    "description": "A website for quantitative trading",
+    "icons": [
+        {
+            "src": "/icons/icon-64x64.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+}
