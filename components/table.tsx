@@ -126,7 +126,7 @@ export default function CustomTable() {
           return (
             <div className="relative flex items-center gap-3">
               <Tooltip content="任务详情">
-                <span className="text-default-400 cursor-pointer active:opacity-50">
+                <span className="text-xs text-default-400 cursor-pointer active:opacity-50">
                   <DetailTask
                     taskId={task.task_id}
                     taskConfig={task.task_config}
@@ -134,7 +134,7 @@ export default function CustomTable() {
                 </span>
               </Tooltip>
               <Tooltip content="更新任务">
-                <span className="text-default-400 cursor-pointer active:opacity-50">
+                <span className="text-xs text-default-400 cursor-pointer active:opacity-50">
                   <UpdateTask
                     taskId={task.task_id}
                     taskConfig={task.task_config}
@@ -142,7 +142,7 @@ export default function CustomTable() {
                 </span>
               </Tooltip>
               <Tooltip color="danger" content="删除任务">
-                <span className="text-danger cursor-pointer active:opacity-50">
+                <span className="text-xs text-danger cursor-pointer active:opacity-50">
                   <DeleteIcon
                     onClick={() => handleStopButtonClick(task.task_id)}
                   />
