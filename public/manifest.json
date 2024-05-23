@@ -1,14 +1,30 @@
 {
-    "name": "Quantitative Trading Website",
+    "name": "Quantitative Trading",
     "short_name": "QuantTrade",
     "description": "A website for quantitative trading",
     "icons": [
         {
+            "src": "/icons/icon-48x48.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
             "src": "/icons/icon-64x64.png",
             "sizes": "64x64",
             "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
         }
     ],
+    "id": "/",
     "start_url": "/",
     "display": "standalone",
     "theme_color": "#000000",
