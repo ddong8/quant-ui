@@ -20,6 +20,7 @@ import { AddTask } from "./table/Add";
 import { Task } from "../types";
 
 const columns = [
+  { key: "id", label: "序号" },
   { key: "name", label: "开仓品种" },
   { key: "price", label: "开仓价格" },
   { key: "actions", label: "任务操作" },
@@ -97,10 +98,18 @@ export default function CustomTable() {
       const cellValue = getKeyValue(task, columnKey);
 
       switch (columnKey) {
+        case "id":
+          return (
+            <div className="flex flex-col">
+              <p className="text-bold text-xs capitalize">
+                {Number(task.id) + 1}
+              </p>
+            </div>
+          );
         case "name":
           return (
             <div className="flex flex-col">
-              <p className="text-bold text-sm capitalize">
+              <p className="text-bold text-xs capitalize">
                 {task.task_config.code}
               </p>
             </div>
@@ -108,16 +117,16 @@ export default function CustomTable() {
         case "price":
           return (
             <div className="flex flex-col">
-              <p className="text-bold text-sm capitalize">
+              <p className="text-bold text-xs capitalize">
                 {task.task_config.target_price}
               </p>
             </div>
           );
         case "actions":
           return (
-            <div className="relative flex items-center gap-4">
+            <div className="relative flex items-center gap-3">
               <Tooltip content="任务详情">
-                <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                <span className="text-default-400 cursor-pointer active:opacity-50">
                   <DetailTask
                     taskId={task.task_id}
                     taskConfig={task.task_config}
@@ -125,7 +134,7 @@ export default function CustomTable() {
                 </span>
               </Tooltip>
               <Tooltip content="更新任务">
-                <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                <span className="text-default-400 cursor-pointer active:opacity-50">
                   <UpdateTask
                     taskId={task.task_id}
                     taskConfig={task.task_config}
@@ -133,7 +142,7 @@ export default function CustomTable() {
                 </span>
               </Tooltip>
               <Tooltip color="danger" content="删除任务">
-                <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                <span className="text-danger cursor-pointer active:opacity-50">
                   <DeleteIcon
                     onClick={() => handleStopButtonClick(task.task_id)}
                   />
