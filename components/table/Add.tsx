@@ -77,7 +77,7 @@ export const AddTask = () => {
         <Modal
           size="xs"
           backdrop="blur"
-          placement="top-center"
+          placement="center"
           isOpen={isOpen}
           onOpenChange={onOpenChange}
         >

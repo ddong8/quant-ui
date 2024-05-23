@@ -28,7 +28,6 @@ const columns = [
 export default function CustomTable() {
   const { data: session } = useSession();
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [selectedKeys, setSelectedKeys] = useState(new Set(["2"]));
 
   const stopTask = useCallback(
     async (task_id: string) => {
@@ -116,7 +115,7 @@ export default function CustomTable() {
           );
         case "actions":
           return (
-            <div className="relative flex items-center gap-2">
+            <div className="relative flex items-center gap-4">
               <Tooltip content="任务详情">
                 <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                   <DetailTask
@@ -159,18 +158,8 @@ export default function CustomTable() {
     );
   }, []);
 
-  const handleSelectionChange = (keys: any) => {
-    setSelectedKeys(new Set(keys));
-  };
-
   return (
-    <Table
-      aria-label="Example table with custom cells"
-      selectionMode="multiple"
-      selectedKeys={selectedKeys}
-      onSelectionChange={handleSelectionChange}
-      topContent={topContent}
-    >
+    <Table aria-label="Example table with custom cells" topContent={topContent}>
       <TableHeader columns={columns}>
         {(column) => (
           <TableColumn
