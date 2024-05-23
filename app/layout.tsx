@@ -57,10 +57,7 @@ export default async function RootLayout({
                 </section>
               </main>
               <footer className="w-full flex items-center justify-center py-3">
-                <p>
-                  Copyright &copy; 2023-{new Date().getFullYear()} ihasy.com All
-                  Rights Reserved.
-                </p>
+                <p>&copy; 2023-{new Date().getFullYear()} IHASY.COM</p>
               </footer>
             </SessionProvider>
           </div>
