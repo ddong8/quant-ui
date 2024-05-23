@@ -78,6 +78,7 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
         <Modal
           size="xs"
           backdrop="blur"
+          placement="top-center"
           isOpen={isOpen}
           onOpenChange={onOpenChange}
         >

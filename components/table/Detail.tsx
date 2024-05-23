@@ -72,7 +72,7 @@ export const DetailTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
       <Modal
         size="xs"
         backdrop="blur"
-        placement="center"
+        placement="top-center"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         isDismissable={false}
