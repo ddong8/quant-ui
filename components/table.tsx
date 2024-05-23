@@ -101,7 +101,7 @@ export default function CustomTable() {
         case "id":
           return (
             <div className="flex flex-col">
-              <p className="text-bold text-xs capitalize">
+              <p className="text-bold text-sm capitalize">
                 {Number(task.id) + 1}
               </p>
             </div>
@@ -109,7 +109,7 @@ export default function CustomTable() {
         case "name":
           return (
             <div className="flex flex-col">
-              <p className="text-bold text-xs capitalize">
+              <p className="text-bold text-sm capitalize">
                 {task.task_config.code}
               </p>
             </div>
@@ -117,7 +117,7 @@ export default function CustomTable() {
         case "price":
           return (
             <div className="flex flex-col">
-              <p className="text-bold text-xs capitalize">
+              <p className="text-bold text-sm capitalize">
                 {task.task_config.target_price}
               </p>
             </div>
