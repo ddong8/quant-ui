@@ -17,14 +17,14 @@ export const AddTask = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [isDisabled1, setIsDisabled1] = useState(false);
   const [values, setValues] = useState({
-    code: "",
-    direction: "",
-    target_price: "",
-    price_diff_step: "",
-    volume_diff_step: "",
-    profit_diff_price: "",
-    target_profit: "",
-    max_position_ratio: "",
+    code: "CZCE.FG409",
+    direction: "BUY",
+    target_price: "1900",
+    price_diff_step: "5",
+    volume_diff_step: "1",
+    profit_diff_price: "7",
+    target_profit: "5600",
+    max_position_ratio: "0.1",
   });
 
   const handleChange = (event: any) => {
