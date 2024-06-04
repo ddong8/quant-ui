@@ -18,6 +18,7 @@ import { DetailTask } from "./table/Detail";
 import { UpdateTask } from "./table/Update";
 import { AddTask } from "./table/Add";
 import { Task } from "../types";
+import { Socket } from "socket.io-client";
 
 const columns = [
   { key: "id", label: "序号" },
@@ -29,6 +30,7 @@ const columns = [
 export default function CustomTable() {
   const { data: session } = useSession();
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [websocket, setWebSocket] = useState<Socket>();
 
   const stopTask = useCallback(
     async (task_id: string) => {
@@ -85,6 +87,9 @@ export default function CustomTable() {
     socket.on("message", onMessage);
     socket.on("disconnect", onDisconnect);
 
+    // 将WebSocket实例保存到状态中
+    setWebSocket(socket);
+
     // 清理函数，注销事件处理函数
     return () => {
       socket.off("connect", onConnect);
@@ -130,6 +135,7 @@ export default function CustomTable() {
                   <DetailTask
                     taskId={task.task_id}
                     taskConfig={task.task_config}
+                    websocket={websocket}
                   />
                 </span>
               </Tooltip>
@@ -154,7 +160,7 @@ export default function CustomTable() {
           return cellValue;
       }
     },
-    [handleStopButtonClick]
+    [handleStopButtonClick, websocket]
   );
 
   const topContent = useMemo(() => {

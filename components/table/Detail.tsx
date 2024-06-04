@@ -12,11 +12,11 @@ import {
 import { EyeIcon } from "./icon/EyeIcon";
 import { useSession } from "next-auth/react";
 import { TaskConfig } from "@/types";
-import { socket } from "../../app/socket";
 
 interface MyProps {
   taskId: string;
   taskConfig: TaskConfig;
+  websocket: any;
 }
 
 interface RealTimeMessage {
@@ -24,16 +24,16 @@ interface RealTimeMessage {
   message: string;
 }
 
-export const DetailTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
+export const DetailTask: React.FC<MyProps> = ({
+  taskId,
+  taskConfig,
+  websocket,
+}) => {
   const { data: session } = useSession();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [realTimeMessage, setRealTimeMessage] = useState<RealTimeMessage>();
 
   useEffect(() => {
-    const onConnect = () => {
-      socket.emit("join_room", session?.user?.name);
-    };
-
     const onMessage = (message: any) => {
       if (typeof message === "object" && !message.hasOwnProperty("length")) {
         if (message.task_id === taskId) {
@@ -42,27 +42,14 @@ export const DetailTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
       }
     };
 
-    const onDisconnect = () => {
-      socket.emit("leave_room", session?.user?.name);
-    };
-
-    // 如果 socket 已连接，则立即触发 onConnect
-    if (socket.connected) {
-      onConnect();
-    }
-
     // 注册事件处理函数
-    socket.on("connect", onConnect);
-    socket.on("message", onMessage);
-    socket.on("disconnect", onDisconnect);
+    websocket.on("message", onMessage);
 
     // 清理函数，注销事件处理函数
     return () => {
-      socket.off("connect", onConnect);
-      socket.off("message", onMessage);
-      socket.off("disconnect", onDisconnect);
+      websocket.off("message", onMessage);
     };
-  }, [session, taskId]); // 依赖数组中只需包含 session
+  }, [websocket, taskId]); // 依赖数组中需包含 websocket, taskId
 
   return (
     <>
