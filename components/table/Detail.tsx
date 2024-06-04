@@ -10,7 +10,6 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { EyeIcon } from "./icon/EyeIcon";
-import { useSession } from "next-auth/react";
 import { TaskConfig } from "@/types";
 
 interface MyProps {
@@ -29,7 +28,6 @@ export const DetailTask: React.FC<MyProps> = ({
   taskConfig,
   websocket,
 }) => {
-  const { data: session } = useSession();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [realTimeMessage, setRealTimeMessage] = useState<RealTimeMessage>();
 

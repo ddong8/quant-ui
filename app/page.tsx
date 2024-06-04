@@ -1,5 +1,4 @@
 import { auth } from "../app/api/auth";
-import { SessionProvider } from "next-auth/react";
 import dynamic from "next/dynamic";
 
 const CustomTable = dynamic(() => import("@/components/table"), { ssr: false });
@@ -14,9 +13,7 @@ export default async function Home() {
     );
   return (
     <div className="flex flex-col gap-4">
-      <SessionProvider session={session}>
-        <CustomTable />
-      </SessionProvider>
+      <CustomTable />
     </div>
   );
 }
