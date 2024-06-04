@@ -22,7 +22,7 @@ export const AddTask = () => {
     target_price: "1900",
     price_diff_step: "5",
     volume_diff_step: "1",
-    profit_diff_price: "7",
+    profit_diff_price: "8",
     target_profit: "5600",
     max_position_ratio: "0.1",
   });
