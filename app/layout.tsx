@@ -7,7 +7,6 @@ import { Navbar } from "@/components/navbar";
 import clsx from "clsx";
 
 import { SessionProvider } from "next-auth/react";
-import { Session } from "next-auth";
 
 export const metadata: Metadata = {
   title: {
@@ -23,10 +22,8 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-  session,
   children,
 }: {
-  session: Session | null;
   children: React.ReactNode;
 }) {
   return (
@@ -48,7 +45,7 @@ export default async function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
-            <SessionProvider session={session}>
+            <SessionProvider>
               <Navbar />
               <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
                 <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
