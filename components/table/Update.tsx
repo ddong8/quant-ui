@@ -81,6 +81,7 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
           placement="center"
           isOpen={isOpen}
           onOpenChange={onOpenChange}
+          scrollBehavior="inside"
         >
           <ModalContent>
             {(onClose) => (

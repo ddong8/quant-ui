@@ -80,6 +80,7 @@ export const AddTask = () => {
           placement="center"
           isOpen={isOpen}
           onOpenChange={onOpenChange}
+          scrollBehavior="inside"
         >
           <ModalContent>
             {(onClose) => (
