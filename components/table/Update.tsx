@@ -76,7 +76,7 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
           </EditIcon>
         </div>
         <Modal
-          size="xs"
+          size="sm"
           backdrop="blur"
           placement="center"
           isOpen={isOpen}

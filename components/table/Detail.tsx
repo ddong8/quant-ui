@@ -35,7 +35,11 @@ export const DetailTask: React.FC<MyProps> = ({
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [realTimeMessage, setRealTimeMessage] = useState<RealTimeMessage>();
-  const jsonTemplate = `\`\`\`json JsonData \`\`\``;
+  const taskConfigString = `
+\`\`\`json 
+${JSON.stringify(taskConfig, null, 2)} 
+\`\`\`
+`;
 
   useEffect(() => {
     const onMessage = (message: any) => {
@@ -61,7 +65,7 @@ export const DetailTask: React.FC<MyProps> = ({
         <span>任务详情</span>
       </EyeIcon>
       <Modal
-        size="md"
+        size="sm"
         backdrop="blur"
         placement="center"
         isOpen={isOpen}
@@ -84,10 +88,7 @@ export const DetailTask: React.FC<MyProps> = ({
                   </span>
                   <Divider />
                   <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-                    {jsonTemplate.replace(
-                      "JsonData",
-                      JSON.stringify(taskConfig, null, 2)
-                    )}
+                    {taskConfigString}
                   </ReactMarkdown>
                 </div>
               </ModalBody>

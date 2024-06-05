@@ -75,7 +75,7 @@ export const AddTask = () => {
           </Button>
         </div>
         <Modal
-          size="xs"
+          size="sm"
           backdrop="blur"
           placement="center"
           isOpen={isOpen}
