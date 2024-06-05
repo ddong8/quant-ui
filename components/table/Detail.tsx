@@ -60,10 +60,8 @@ ${JSON.stringify(taskConfig, null, 2)}
   }, [websocket, taskId]); // 依赖数组中需包含 websocket, taskId
 
   return (
-    <>
-      <EyeIcon onClick={onOpen}>
-        <span>任务详情</span>
-      </EyeIcon>
+    <div className="flex flex-col gap-2">
+      <EyeIcon onClick={onOpen}>任务详情</EyeIcon>
       <Modal
         size="sm"
         backdrop="blur"
@@ -81,12 +79,18 @@ ${JSON.stringify(taskConfig, null, 2)}
               </ModalHeader>
               <ModalBody>
                 <div>
-                  <span>{taskId}</span>
                   <Divider />
-                  <span>
+                  <span>任务ID: </span>
+                  <br />
+                  <span style={{ color: "red" }}>{taskId}</span>
+                  <Divider />
+                  <span>实时行情: </span>
+                  <br />
+                  <span style={{ color: "green" }}>
                     {realTimeMessage ? realTimeMessage.message : "N/A"}
                   </span>
                   <Divider />
+                  <span>任务配置:</span>
                   <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
                     {taskConfigString}
                   </ReactMarkdown>
@@ -101,6 +105,6 @@ ${JSON.stringify(taskConfig, null, 2)}
           )}
         </ModalContent>
       </Modal>
-    </>
+    </div>
   );
 };

@@ -12,10 +12,10 @@ import {
   getKeyValue,
 } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
-import { DeleteIcon } from "./table/icon/DeleteIcon";
 import { socket } from "../app/socket";
 import { DetailTask } from "./table/Detail";
 import { UpdateTask } from "./table/Update";
+import { DeleteTask } from "./table/Delete";
 import { AddTask } from "./table/Add";
 import { Task } from "../types";
 import { Socket } from "socket.io-client";
@@ -31,36 +31,6 @@ export default function CustomTable() {
   const { data: session } = useSession();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [websocket, setWebSocket] = useState<Socket>();
-
-  const stopTask = useCallback(
-    async (task_id: string) => {
-      try {
-        const resp = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/future/cancel_task`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ User: session?.user, task_id }, null, 2),
-          }
-        );
-        const jsonData = await resp.json();
-        // 处理 jsonData 如果需要
-      } catch (error) {
-        console.error(error);
-      } finally {
-      }
-    },
-    [session]
-  );
-
-  const handleStopButtonClick = useCallback(
-    (task_id: string) => {
-      stopTask(task_id).catch((error) => {
-        console.error("Error stopping task:", error);
-      });
-    },
-    [stopTask]
-  );
 
   useEffect(() => {
     const onConnect = () => {
@@ -149,8 +119,9 @@ export default function CustomTable() {
               </Tooltip>
               <Tooltip color="danger" content="删除任务">
                 <span className="text-sm text-danger cursor-pointer active:opacity-50">
-                  <DeleteIcon
-                    onClick={() => handleStopButtonClick(task.task_id)}
+                  <DeleteTask
+                    taskId={task.task_id}
+                    taskConfig={task.task_config}
                   />
                 </span>
               </Tooltip>
@@ -160,7 +131,7 @@ export default function CustomTable() {
           return cellValue;
       }
     },
-    [handleStopButtonClick, websocket]
+    [websocket]
   );
 
   const topContent = useMemo(() => {
