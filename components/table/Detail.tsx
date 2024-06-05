@@ -9,6 +9,11 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
+
+import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
+import "highlight.js/styles/github-dark.css"; // 选择一个样式，可以根据需要更换
+
 import { EyeIcon } from "./icon/EyeIcon";
 import { TaskConfig } from "@/types";
 
@@ -30,6 +35,7 @@ export const DetailTask: React.FC<MyProps> = ({
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [realTimeMessage, setRealTimeMessage] = useState<RealTimeMessage>();
+  const jsonTemplate = `\`\`\`json JsonData \`\`\``;
 
   useEffect(() => {
     const onMessage = (message: any) => {
@@ -55,7 +61,7 @@ export const DetailTask: React.FC<MyProps> = ({
         <span>任务详情</span>
       </EyeIcon>
       <Modal
-        size="xs"
+        size="md"
         backdrop="blur"
         placement="center"
         isOpen={isOpen}
@@ -77,7 +83,12 @@ export const DetailTask: React.FC<MyProps> = ({
                     {realTimeMessage ? realTimeMessage.message : "N/A"}
                   </span>
                   <Divider />
-                  <span>{JSON.stringify(taskConfig, null, 2)}</span>
+                  <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+                    {jsonTemplate.replace(
+                      "JsonData",
+                      JSON.stringify(taskConfig, null, 2)
+                    )}
+                  </ReactMarkdown>
                 </div>
               </ModalBody>
               <ModalFooter>
