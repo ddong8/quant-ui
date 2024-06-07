@@ -7,7 +7,7 @@ import { Navbar } from "@/components/navbar";
 import clsx from "clsx";
 
 import { SessionProvider } from "next-auth/react";
-import { Session } from "next-auth";
+import { auth } from "../app/api/auth";
 
 export const metadata: Metadata = {
   title: {
@@ -23,12 +23,11 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-  session,
   children,
 }: {
-  session: Session | null;
   children: React.ReactNode;
 }) {
+  const session = await auth();
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
