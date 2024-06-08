@@ -85,11 +85,9 @@ export default function CustomTable() {
         case "name":
           return (
             <div className="flex flex-col">
-              <Tooltip content="查看行情">
-                <span className="text-sm text-default-400 cursor-pointer active:opacity-50">
-                  <QuoteTask taskCode={task.task_config.code} />
-                </span>
-              </Tooltip>
+              <span className="text-sm text-default-400 cursor-pointer active:opacity-50">
+                <QuoteTask taskCode={task.task_config.code} />
+              </span>
             </div>
           );
         case "price":
