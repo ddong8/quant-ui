@@ -84,7 +84,7 @@ ${JSON.stringify(taskConfig, null, 2)}
                   <br />
                   <span style={{ color: "red" }}>{taskId}</span>
                   <Divider />
-                  <span>实时行情: </span>
+                  <span>实时盈亏: </span>
                   <br />
                   <span style={{ color: "green" }}>
                     {realTimeMessage ? realTimeMessage.message : "N/A"}

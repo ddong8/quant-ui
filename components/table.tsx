@@ -16,6 +16,7 @@ import { socket } from "../app/socket";
 import { DetailTask } from "./table/Detail";
 import { UpdateTask } from "./table/Update";
 import { DeleteTask } from "./table/Delete";
+import { QuoteTask } from "./table/Quote";
 import { AddTask } from "./table/Add";
 import { Task } from "../types";
 import { Socket } from "socket.io-client";
@@ -84,9 +85,11 @@ export default function CustomTable() {
         case "name":
           return (
             <div className="flex flex-col">
-              <p className="text-bold text-sm capitalize">
-                {task.task_config.code}
-              </p>
+              <Tooltip content="查看行情">
+                <span className="text-sm text-default-400 cursor-pointer active:opacity-50">
+                  <QuoteTask taskCode={task.task_config.code} />
+                </span>
+              </Tooltip>
             </div>
           );
         case "price":
