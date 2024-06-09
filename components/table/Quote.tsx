@@ -19,7 +19,7 @@ export const QuoteTask: React.FC<MyProps> = ({ taskCode }) => {
   const url = "https://wap.eastmoney.com/quote/stock/115." + code + ".html";
   return (
     <div className="flex flex-col gap-2">
-      <Link showAnchorIcon onClick={onOpen}>
+      <Link showAnchorIcon onClick={onOpen} className="text-sm">
         {code}
       </Link>
       <Modal
