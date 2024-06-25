@@ -5,6 +5,7 @@ import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
 import clsx from "clsx";
+import { Toaster } from "react-hot-toast";
 
 import { SessionProvider } from "next-auth/react";
 import { auth } from "../app/api/auth";
@@ -53,6 +54,7 @@ export default async function RootLayout({
                 <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
                   <div className="inline-block max-w-4xl justify-center w-full">
                     {children}
+                    <Toaster />
                   </div>
                 </section>
               </main>

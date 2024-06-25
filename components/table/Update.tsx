@@ -10,6 +10,8 @@ import {
 } from "@nextui-org/react";
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
+import { toast } from "react-hot-toast";
+
 import { EditIcon } from "./icon/EditIcon";
 import { TaskConfig } from "@/types";
 
@@ -60,8 +62,9 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
       });
       const jsonData = await resp.json();
       setValues(jsonData.data.task_config);
+      toast.success("任务更新成功!");
     } catch (error) {
-      console.error(error); // 打印失败信息
+      toast.error(`任务更新失败! 详情: ${error}`);
     } finally {
       setIsDisabled2(false); // 请求结束，恢复按钮状态为enable
     }

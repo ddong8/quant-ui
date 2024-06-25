@@ -14,6 +14,7 @@ import { useSession } from "next-auth/react";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css"; // 选择一个样式，可以根据需要更换
+import { toast } from "react-hot-toast";
 
 import { TaskConfig } from "@/types";
 import { DeleteIcon } from "./icon/DeleteIcon";
@@ -50,8 +51,9 @@ ${JSON.stringify(taskConfig, null, 2)}
         }
       );
       const jsonData = await resp.json();
+      toast.success("任务删除成功!");
     } catch (error) {
-      console.error(error); // 打印失败信息
+      toast.error(`任务删除失败! 详情: ${error}`);
     } finally {
       setIsDisabled2(false); // 请求结束，恢复按钮状态为enable
     }
