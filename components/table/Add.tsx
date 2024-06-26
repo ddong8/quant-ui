@@ -167,9 +167,9 @@ export const AddTask = () => {
                   />
                 </div>
               </ModalBody>
-              <ModalFooter className="gap-3">
+              <ModalFooter className="gap-5">
                 <Button
-                  size="md"
+                  size="lg"
                   radius="lg"
                   color="danger"
                   variant="flat"
@@ -178,7 +178,7 @@ export const AddTask = () => {
                   关闭
                 </Button>
                 <Button
-                  size="md"
+                  size="lg"
                   radius="lg"
                   isDisabled={isDisabled1}
                   onPress={onClose}

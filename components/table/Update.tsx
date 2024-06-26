@@ -164,9 +164,9 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
                   />
                 </div>
               </ModalBody>
-              <ModalFooter className="gap-3">
+              <ModalFooter className="gap-5">
                 <Button
-                  size="md"
+                  size="lg"
                   radius="lg"
                   color="danger"
                   variant="flat"
@@ -175,7 +175,7 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
                   关闭
                 </Button>
                 <Button
-                  size="md"
+                  size="lg"
                   radius="lg"
                   isDisabled={isDisabled2}
                   onPress={onClose}
