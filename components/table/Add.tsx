@@ -154,7 +154,7 @@ export const AddTask = () => {
                     name="max_position_ratio"
                     variant="bordered"
                     value={values.max_position_ratio}
-                    placeholder="账户允许使用的最大仓位"
+                    placeholder="允许使用的最大仓位"
                     onChange={handleChange}
                   />
                   <Input
