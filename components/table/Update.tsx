@@ -34,6 +34,7 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
     profit_diff_price: taskConfig.profit_diff_price,
     target_profit: taskConfig.target_profit,
     max_position_ratio: taskConfig.max_position_ratio,
+    threshold_points: taskConfig.threshold_points,
   });
 
   const handleChange = (event: any) => {
@@ -87,7 +88,7 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
               <ModalHeader className="flex flex-col gap-1">
                 任务参数
               </ModalHeader>
-              <ModalBody>
+              <ModalBody className="flex flex-col gap-2">
                 <Input
                   label="品种"
                   name="code"
@@ -142,6 +143,13 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
                   name="max_position_ratio"
                   variant="bordered"
                   value={values.max_position_ratio}
+                  onChange={handleChange}
+                />
+                <Input
+                  label="波动监控"
+                  name="threshold_points"
+                  variant="bordered"
+                  value={values.threshold_points}
                   onChange={handleChange}
                 />
               </ModalBody>

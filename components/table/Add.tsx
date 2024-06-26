@@ -27,6 +27,7 @@ export const AddTask = () => {
     profit_diff_price: "8",
     target_profit: "5600",
     max_position_ratio: "0.1",
+    threshold_points: "10",
   });
 
   const handleChange = (event: any) => {
@@ -88,7 +89,7 @@ export const AddTask = () => {
               <ModalHeader className="flex flex-col gap-1">
                 任务参数
               </ModalHeader>
-              <ModalBody>
+              <ModalBody className="flex flex-col gap-2">
                 <Input
                   label="品种"
                   name="code"
@@ -143,6 +144,13 @@ export const AddTask = () => {
                   name="max_position_ratio"
                   variant="bordered"
                   value={values.max_position_ratio}
+                  onChange={handleChange}
+                />
+                <Input
+                  label="波动监控"
+                  name="threshold_points"
+                  variant="bordered"
+                  value={values.threshold_points}
                   onChange={handleChange}
                 />
               </ModalBody>

@@ -19,4 +19,5 @@ export type TaskConfig = {
   profit_diff_price: string
   target_profit: string
   max_position_ratio: string
+  threshold_points: string
 };
