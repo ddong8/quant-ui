@@ -157,10 +157,18 @@ export const AddTask = () => {
                 />
               </ModalBody>
               <ModalFooter className="gap-3">
-                <Button color="danger" variant="flat" onClick={onClose}>
+                <Button
+                  size="md"
+                  radius="lg"
+                  color="danger"
+                  variant="flat"
+                  onClick={onClose}
+                >
                   关闭
                 </Button>
                 <Button
+                  size="md"
+                  radius="lg"
                   isDisabled={isDisabled1}
                   onPress={onClose}
                   onClick={handleCreateButtonClick}
