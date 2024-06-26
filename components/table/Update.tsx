@@ -88,7 +88,7 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
               <ModalHeader className="flex flex-col gap-1">
                 任务参数
               </ModalHeader>
-              <ModalBody className="flex flex-col gap-2">
+              <ModalBody className="flex flex-col gap-1">
                 <Input
                   label="品种"
                   name="code"
