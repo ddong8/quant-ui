@@ -156,7 +156,7 @@ export const AddTask = () => {
                   onChange={handleChange}
                 />
               </ModalBody>
-              <ModalFooter>
+              <ModalFooter className="gap-3">
                 <Button color="danger" variant="flat" onClick={onClose}>
                   关闭
                 </Button>
