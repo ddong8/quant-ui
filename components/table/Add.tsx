@@ -94,6 +94,7 @@ export const AddTask = () => {
               <ModalBody className="flex flex-col gap-2">
                 <div className="gap-4 grid grid-cols-2 row-span-3">
                   <Input
+                    size="sm"
                     label="品种"
                     name="code"
                     variant="bordered"
@@ -102,6 +103,7 @@ export const AddTask = () => {
                     onChange={handleChange}
                   />
                   <Input
+                    size="sm"
                     label="开仓方向"
                     name="direction"
                     variant="bordered"
@@ -110,6 +112,7 @@ export const AddTask = () => {
                     onChange={handleChange}
                   />
                   <Input
+                    size="sm"
                     label="起始价格"
                     name="target_price"
                     variant="bordered"
@@ -118,6 +121,7 @@ export const AddTask = () => {
                     onChange={handleChange}
                   />
                   <Input
+                    size="sm"
                     label="增仓价差"
                     name="price_diff_step"
                     variant="bordered"
@@ -126,6 +130,7 @@ export const AddTask = () => {
                     onChange={handleChange}
                   />
                   <Input
+                    size="sm"
                     label="增仓量差"
                     name="volume_diff_step"
                     variant="bordered"
@@ -134,6 +139,7 @@ export const AddTask = () => {
                     onChange={handleChange}
                   />
                   <Input
+                    size="sm"
                     label="盈利价差"
                     name="profit_diff_price"
                     variant="bordered"
@@ -142,6 +148,7 @@ export const AddTask = () => {
                     onChange={handleChange}
                   />
                   <Input
+                    size="sm"
                     label="目标盈利"
                     name="target_profit"
                     variant="bordered"
@@ -150,6 +157,7 @@ export const AddTask = () => {
                     onChange={handleChange}
                   />
                   <Input
+                    size="sm"
                     label="最大仓位"
                     name="max_position_ratio"
                     variant="bordered"
@@ -158,6 +166,7 @@ export const AddTask = () => {
                     onChange={handleChange}
                   />
                   <Input
+                    size="sm"
                     label="波动监控"
                     name="threshold_points"
                     variant="bordered"
@@ -169,7 +178,7 @@ export const AddTask = () => {
               </ModalBody>
               <ModalFooter className="gap-5">
                 <Button
-                  size="lg"
+                  size="md"
                   radius="lg"
                   color="danger"
                   variant="flat"
@@ -178,7 +187,7 @@ export const AddTask = () => {
                   关闭
                 </Button>
                 <Button
-                  size="lg"
+                  size="md"
                   radius="lg"
                   isDisabled={isDisabled1}
                   onPress={onClose}
