@@ -167,7 +167,7 @@ export const AddTask = () => {
                   />
                 </div>
               </ModalBody>
-              <ModalFooter className="gap-5">
+              <ModalFooter className="gap-4">
                 <Button
                   radius="lg"
                   color="danger"
