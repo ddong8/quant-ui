@@ -91,7 +91,7 @@ ${JSON.stringify(taskConfig, null, 2)}
                   <span>确定要删除吗?</span>
                 </div>
               </ModalBody>
-              <ModalFooter>
+              <ModalFooter className="gap-4">
                 <Button color="danger" variant="flat" onClick={onClose}>
                   取消
                 </Button>
