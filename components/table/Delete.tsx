@@ -63,7 +63,7 @@ ${JSON.stringify(taskConfig, null, 2)}
     <div className="flex flex-col gap-2">
       <DeleteIcon onClick={onOpen}>删除任务</DeleteIcon>
       <Modal
-        size="sm"
+        size="md"
         backdrop="blur"
         placement="center"
         isOpen={isOpen}

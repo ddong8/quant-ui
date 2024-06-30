@@ -63,7 +63,7 @@ ${JSON.stringify(taskConfig, null, 2)}
     <div className="flex flex-col gap-2">
       <EyeIcon onClick={onOpen}>任务详情</EyeIcon>
       <Modal
-        size="sm"
+        size="md"
         backdrop="blur"
         placement="center"
         isOpen={isOpen}
