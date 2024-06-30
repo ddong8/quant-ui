@@ -75,7 +75,7 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
     <div className="flex flex-col gap-2">
       <EditIcon onClick={onOpen}>更新任务参数</EditIcon>
       <Modal
-        size="sm"
+        size="md"
         backdrop="blur"
         placement="center"
         isOpen={isOpen}
@@ -166,7 +166,6 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
               </ModalBody>
               <ModalFooter className="gap-5">
                 <Button
-                  size="md"
                   radius="lg"
                   color="danger"
                   variant="flat"
@@ -175,7 +174,6 @@ export const UpdateTask: React.FC<MyProps> = ({ taskId, taskConfig }) => {
                   关闭
                 </Button>
                 <Button
-                  size="md"
                   radius="lg"
                   isDisabled={isDisabled2}
                   onPress={onClose}

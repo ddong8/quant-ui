@@ -78,7 +78,7 @@ export const AddTask = () => {
         新建任务
       </Button>
       <Modal
-        size="sm"
+        size="md"
         backdrop="blur"
         placement="center"
         isOpen={isOpen}
@@ -169,7 +169,6 @@ export const AddTask = () => {
               </ModalBody>
               <ModalFooter className="gap-5">
                 <Button
-                  size="md"
                   radius="lg"
                   color="danger"
                   variant="flat"
@@ -178,7 +177,6 @@ export const AddTask = () => {
                   关闭
                 </Button>
                 <Button
-                  size="md"
                   radius="lg"
                   isDisabled={isDisabled1}
                   onPress={onClose}
